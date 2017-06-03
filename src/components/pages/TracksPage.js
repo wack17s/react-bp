@@ -13,14 +13,25 @@ export default class TracksPage extends Component {
         tracks      : PropTypes.array
     }
 
+    state = {
+        isPlaying: false
+    }
+
     componentWillMount() {
         const { fetchTracks } = this.props;
 
         fetchTracks();
     }
 
+    handleTogglePause = () => {
+        const { isPlaying } = this.state;
+
+        this.setState({ isPlaying: !isPlaying });
+    }
+
     render() {
-        console.log('tracks', this.props.tracks);
+        const { tracks } = this.props;
+        const { isPlaying } = this.state;
 
         return (
             <div className='App'>
@@ -28,11 +39,17 @@ export default class TracksPage extends Component {
                     <img src={logo} className='App-logo' alt='logo' />
                     <h2>Tracks Page</h2>
                 </div>
-                <p className='App-intro'>
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
+                {
+                    tracks.map(track => {
+                        return (
+                            <div key={track.id}>{track.title}</div>);
+                    })
+                }
 
-                <SoundPlayer />
+                <SoundPlayer
+                    isPlaying = {isPlaying}
+                    onTogglePause = {this.handleTogglePause}
+                />
             </div>
         );
     }

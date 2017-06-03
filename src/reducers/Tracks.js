@@ -3,7 +3,8 @@ import {
 } from '../actions/TracksActions.js';
 
 const initialState = {
-    tracks : []
+    tracks : [],
+    currentTrack: null
 };
 
 export default function bookings(state = initialState, action) {

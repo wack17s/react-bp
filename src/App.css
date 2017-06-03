@@ -22,3 +22,27 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
+.SoundPlayer {
+    display: flex;
+    padding-left: 20px;
+}
+
+.playerButton {
+    height: 20px;
+    width: 50px;
+    padding: 4px;
+    color: rgb(34, 34, 34);
+    border: solid rgb(34, 34, 34) 2px;
+    transition: linear .3s;
+}
+
+.playerButton:hover {
+    color: white;
+    background-color: rgb(34, 34, 34);
+    cursor: pointer;
+}
+
+.playerButton-playing {
+    background-color: #61dafb;
+}
