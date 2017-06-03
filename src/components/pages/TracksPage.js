@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
-import Sound from 'react-sound';
+import { connect }          from 'react-redux';
+import PropTypes            from 'prop-types';
+import Sound                from 'react-sound';
+import * as TracksActions   from '../../actions/TracksActions';
 
 import logo from '../../logo.svg';
 import '../../App.css';
 
 class TracksPage extends Component {
+    static propTypes = {
+        fetchTracks : PropTypes.func,
+        tracks      : PropTypes.array
+    }
+
+    componentWillMount() {
+        const { fetchTracks } = this.props;
+
+        fetchTracks();
+    }
+
     render() {
+        console.log('tracks', this.props.tracks);
+
         return (
             <div className='App'>
                 <div className='App-header'>
@@ -27,4 +43,10 @@ class TracksPage extends Component {
     }
 }
 
-export default TracksPage;
+function mapStateToProps(state) {
+    return {
+        tracks : state.tracks.tracks
+    };
+}
+
+export default connect(mapStateToProps, { ...TracksActions })(TracksPage);

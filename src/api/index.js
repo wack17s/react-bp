@@ -10,6 +10,6 @@ export default function ({ apiPrefix } = {}) {
 
     return {
         apiClient : api,
-        sessions  : new TracksAPI({ apiClient : api })
+        tracks    : new TracksAPI({ apiClient: api })
     };
 }
