@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from "react-redux";
+import React        from 'react';
+import ReactDOM     from 'react-dom';
+import { Provider } from 'react-redux';
 import { polyfill } from 'smoothscroll-polyfill';
 
 import registerServiceWorker from './utils/registerServiceWorker';
-import configureStore from "./store/configureStore";
+import configureStore        from './store/configureStore';
 
 import './index.css';
 
@@ -13,13 +13,14 @@ polyfill();
 const store = configureStore();
 
 // Save a reference to the root element for reuse
-const rootEl = document.getElementById("root");
+const rootEl = document.getElementById('root');
 
 // Create a reusable render method that we can call more than once
+// eslint-disable-next-line
 let render = () => {
     // Dynamically import our main App component, and render it
     const App = require('./App').default;
-    
+
     ReactDOM.render(
         <Provider store={store}>
             <App />
@@ -32,8 +33,10 @@ if (module.hot) {
     // Support hot reloading of components
     // and display an overlay for runtime errors
     const renderApp = render;
+    // eslint-disable-next-line
     const renderError = (error) => {
         const RedBox = require('redbox-react').default;
+
         ReactDOM.render(
             <RedBox error={error} />,
             rootEl,
