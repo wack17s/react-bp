@@ -1,4 +1,4 @@
-import { apiUrl } from '../config';
+import { apiUrl } from '../etc/config';
 
 export default class ApiClient {
     constructor({ prefix = 'v1/' } = {}) {
