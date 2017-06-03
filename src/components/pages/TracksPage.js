@@ -10,7 +10,7 @@ import SoundPlayer from './TracksPage/SoundPlayer';
 
 import '../../App.css';
 
-class TracksPage extends Component {
+export default class TracksPage extends Component {
     static propTypes = {
         fetchTracks  : PropTypes.func,
         setTrack     : PropTypes.func,
@@ -81,12 +81,3 @@ class TracksPage extends Component {
         );
     }
 }
-
-function mapStateToProps(state) {
-    return {
-        tracks       : state.tracks.tracks,
-        currentTrack : state.tracks.currentTrack
-    };
-}
-
-export default connect(mapStateToProps, { ...TracksActions })(TracksPage);
