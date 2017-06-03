@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import TracksPage   from './components/pages/TracksPage.js';
-import MainPage     from './components/pages/MainPage.js';
+import TracksPage from './containers/TracksPageContainer';
+import MainPage   from './components/pages/MainPage';
 
-class App extends Component {
+export default class App extends Component {
     render() {
         return (
             <Router>
@@ -23,5 +23,3 @@ class App extends Component {
         );
     }
 }
-
-export default App;
