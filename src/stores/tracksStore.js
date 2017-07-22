@@ -2,7 +2,7 @@ import { observable } from 'mobx';
 
 import api from '../apiSingleton.js';
 
-export default class TracksStore {
+class TracksStore {
     @observable tracks = []
 
     async fetchTracks() {
@@ -13,3 +13,5 @@ export default class TracksStore {
         }
     }
 }
+
+export default new TracksStore();

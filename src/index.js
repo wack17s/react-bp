@@ -7,6 +7,7 @@ import registerServiceWorker from './utils/registerServiceWorker';
 
 import stores from './stores';
 
+
 import './index.css';
 
 polyfill();

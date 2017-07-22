@@ -6,7 +6,7 @@ class Tracks extends Base {
         return [
             {
                 id     : 1,
-                url    : 'http://cdn.anything2mp3.com/system/files/mp3/The%20Black%20Keys-Busted_FVnBU3tIci8_youtube.mp3',
+                url    : 'http://cdn.anything2mp3.com/system/files/mp3/Pharrell%20Williams%20-%20Happy%20%28Official%20Music%20Video%29_y6Sxv-sUYtM_youtube.mp3',
                 title  : 'Busted',
                 artist : 'Black Keys',
                 album  : 'The Big Come Up',

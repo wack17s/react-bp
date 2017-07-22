@@ -1,5 +1,5 @@
-import TracksStore from './tracksStore.js';
+import tracksStore from './tracksStore.js';
 
 export default  {
-    TracksStore
+    tracksStore
 };
