@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import TracksPage from './containers/TracksPageContainer';
-import MainPage   from './components/pages/MainPage';
+import TracksPage from './containers/TracksPage.js';
+import MainPage   from './components/pages/MainPage.js';
 
 export default class App extends Component {
     render() {

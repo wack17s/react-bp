@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
 import PropTypes            from 'prop-types';
 import cx                   from 'classnames';
 
-import logo from '../../logo.svg';
+import logo from '../logo.svg';
 
-import SoundPlayer from './TracksPage/SoundPlayer';
+import SoundPlayer from '../components/other/SoundPlayer.js';
 
-import '../../App.css';
+import '../App.css';
 
+@inject('tracksStore')
+@observer
 export default class TracksPage extends Component {
     static propTypes = {
-        fetchTracks  : PropTypes.func,
-        setTrack     : PropTypes.func,
-        currentTrack : PropTypes.object,
-        tracks       : PropTypes.array
+        tracksStore  : PropTypes.object
     }
 
     state = {
-        isPlaying: false
+        isPlaying: false,
+        currentTrackId: null
     }
 
     componentWillMount() {
-        const { fetchTracks } = this.props;
-
-        fetchTracks();
+        this.props.tracksStore.fetchTracks();
     }
 
     handleTogglePause = () => {
@@ -32,17 +31,17 @@ export default class TracksPage extends Component {
         this.setState({ isPlaying: !isPlaying });
     }
 
-    handleSelectTrack = (currentTrack) => {
+    handleSelectTrack = (currentTrackId) => {
         const { isPlaying } = this.state;
-        const { setTrack } = this.props;
 
         if (isPlaying) this.handleTogglePause();
-        setTrack(currentTrack);
+
+        this.setState({ currentTrackId });
     }
 
     render() {
-        const { tracks, currentTrack } = this.props;
-        const { isPlaying } = this.state;
+        const { tracks } = this.props.tracksStore;
+        const { isPlaying, currentTrackId } = this.state;
 
         return (
             <div className='App'>
@@ -56,14 +55,14 @@ export default class TracksPage extends Component {
                         tracks.map(track => {
                             const trackListItemClasses = cx({
                                 trackListItem: true,
-                                trackListItemSelected: track.id === currentTrack.id
+                                trackListItemSelected: track.id === currentTrackId
                             });
 
                             return (
                                 <div
-                                    className={trackListItemClasses}
-                                    onClick={this.handleSelectTrack.bind(this, track)}
-                                    key={track.id}
+                                    className = {trackListItemClasses}
+                                    onClick   = {this.handleSelectTrack.bind(this, track.id)}
+                                    key       = {track.id}
                                 >
                                     {track.title}
                                 </div>);
@@ -71,9 +70,9 @@ export default class TracksPage extends Component {
                     }
                 </div>
                 <SoundPlayer
-                    isPlaying = {isPlaying}
+                    isPlaying     = {isPlaying}
                     onTogglePause = {this.handleTogglePause}
-                    track = {currentTrack}
+                    track         = {tracks.find(track => track.id === currentTrackId)}
                 />
             </div>
         );

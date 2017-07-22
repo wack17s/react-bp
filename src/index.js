@@ -1,28 +1,24 @@
 import React        from 'react';
 import ReactDOM     from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider } from 'mobx-react';
 import { polyfill } from 'smoothscroll-polyfill';
 
 import registerServiceWorker from './utils/registerServiceWorker';
-import configureStore        from './store/configureStore';
+
+import stores from './stores';
 
 import './index.css';
 
 polyfill();
 
-const store = configureStore();
-
-// Save a reference to the root element for reuse
 const rootEl = document.getElementById('root');
 
-// Create a reusable render method that we can call more than once
 // eslint-disable-next-line
 let render = () => {
-    // Dynamically import our main App component, and render it
     const App = require('./App').default;
 
     ReactDOM.render(
-        <Provider store={store}>
+        <Provider {...stores}>
             <App />
         </Provider>,
         rootEl
@@ -30,8 +26,6 @@ let render = () => {
 };
 
 if (module.hot) {
-    // Support hot reloading of components
-    // and display an overlay for runtime errors
     const renderApp = render;
     // eslint-disable-next-line
     const renderError = (error) => {
@@ -43,8 +37,6 @@ if (module.hot) {
         );
     };
 
-    // In development, we wrap the rendering function to catch errors,
-    // and if something breaks, log the error and render it to the screen
     render = () => {
         try {
             renderApp();
@@ -54,8 +46,6 @@ if (module.hot) {
         }
     };
 
-    // Whenever the App component file or one of its dependencies
-    // is changed, re-import the updated component and re-render it
     module.hot.accept('./App', () => {
         setTimeout(render);
     });
