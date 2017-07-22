@@ -51,23 +51,22 @@ export default class TracksPage extends Component {
                 </div>
                 <div className='trackList'>
                     <div className='trackListTitle'> Track list: </div>
-                    {
-                        tracks.map(track => {
-                            const trackListItemClasses = cx({
-                                trackListItem: true,
-                                trackListItemSelected: track.id === currentTrackId
-                            });
+                    {tracks.map(track => {
+                        const trackListItemClasses = cx({
+                            trackListItem: true,
+                            trackListItemSelected: track.id === currentTrackId
+                        });
 
-                            return (
-                                <div
-                                    className = {trackListItemClasses}
-                                    onClick   = {this.handleSelectTrack.bind(this, track.id)}
-                                    key       = {track.id}
-                                >
-                                    {track.title}
-                                </div>);
-                        })
-                    }
+                        return (
+                            <div
+                                className = {trackListItemClasses}
+                                onClick   = {this.handleSelectTrack.bind(this, track.id)}
+                                key       = {track.id}
+                            >
+                                {track.title}
+                            </div>
+                        );
+                    })}
                 </div>
                 <SoundPlayer
                     isPlaying     = {isPlaying}

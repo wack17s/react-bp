@@ -3,7 +3,7 @@ import { observable } from 'mobx';
 import api from '../apiSingleton.js';
 
 class TracksStore {
-    @observable tracks = []
+    @observable tracks = [];
 
     async fetchTracks() {
         try {
